@@ -2,6 +2,8 @@ let plan = prompt("Digite la letra de su plan");
 let planA = 50;
 let planB = 90;
 let planC = 130;
+let planD = 'Coming Soon'
+let planF = 'Coming Soon'
 
 //FUNCIÓN
 
@@ -54,7 +56,11 @@ default:
     alert('Escriba un dato valido');
 };
 
-
+let numero = 0;
+while (numero <= 50) {
+    console.log('este curso es desarrollo web');
+    numero = [planA, planB, planC, planD, planF];
+}
 
     
 
