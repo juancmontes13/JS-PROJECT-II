@@ -107,6 +107,9 @@ a {
     }
 }
 
+/* BUTTONS */
+
+
 /*ICONS*/
 
 .icon{
@@ -174,7 +177,7 @@ a {
 
 /*BUTTONS*/
 
-.boton{
+button {
     border-radius: 40px;
     border: 0;
     cursor: pointer;
