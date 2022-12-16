@@ -25,7 +25,7 @@ body{
     margin: 0;
 } 
 h1, h2, h3 {
-    color: var(--color-headings);
+    color: var(--color-body-darker);
     margin-bottom: 1rem;
     line-height: 1.1;
 }
@@ -41,15 +41,34 @@ h3{
     font-weight: 500;
 }
 p{
-    margin-top: 0;
+    margin: 0;
 }
 
-@media screen and (min-width: 1024px) {
+/* CARRITO */
+
+
+.cart{
+    position: relative;
+}
+.cantidadIcono{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.sumaResta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+}
+
+@media screen and (min-width: 900px) {
     body{
         font-size: 1.8rem;
     }
     h1{
-        font-size: 6rem;
+        font-size: 5rem;
     }
     h2{
         font-size: 4rem;
@@ -60,6 +79,11 @@ p{
     
 }
 
+.title {
+    font-size: 4rem;
+    text-align: center;
+    margin-top: 8rem;
+}
 .header--t{
     font-size: 2.5rem;
     color: var(--color-headings);
@@ -177,16 +201,21 @@ a {
 
 /*BUTTONS*/
 
-button {
+.plans--section  button {
     border-radius: 40px;
     border: 0;
     cursor: pointer;
-    font-size: 1.8rem;
-    margin: 1rem 0;
-    padding: 2rem 4vw;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem 0 3rem 0;
+    padding: 1.5rem 2rem;
     text-transform: uppercase;    
     white-space: nowrap;
     text-align: center;
+}
+.plans--section button:hover {
+    background: var(--color-accent);
+    transition: 1s;
 }
 .boton .icon{
     width: 2rem;
@@ -295,12 +324,13 @@ button {
 .navi{
     background: var(--color-body);
     display: flex;
-    justify-content:right;
+    justify-content:space-between;
     flex-wrap: wrap;
     padding: 0.5rem;
     align-items: center;
     font-family: 'Roboto Mono', monospace, Arial, Helvetica, sans-serif;
     font-weight: 500;
+    
     
 }
 .nav__list{
@@ -680,7 +710,7 @@ transition: 1s;
 /* STORE */ 
 
 .storeBody{
-background-image: url(../images/galaxy.jpg);
+background: #000;
 background-position: center;
 background-size:cover ;
 font-family: 'Roboto Mono', monospace, Arial, Helvetica, sans-serif;
@@ -705,13 +735,7 @@ font-weight: 600;
     margin: 2.5rem 2.5rem 10rem 2.5rem;
     padding: 2rem;
     text-align: center;
-    background: rgba(0, 217, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(0, 217, 255, 0.3);
-   
+    
     
 
 }
@@ -731,3 +755,5 @@ font-weight: 600;
     }
    
 }
+
+#planes {display: none}

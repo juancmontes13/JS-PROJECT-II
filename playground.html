@@ -24,120 +24,57 @@
       rel="stylesheet"
     />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
 
     <title>Juan Montes | Portfolio</title>
   </head>
   <body class="storeBody">
     <nav class="navi collapsible">
-      <img
-        class="icon--nav nav--toggler"
-        src="./images/menu-svgrepo-com.svg"
-        alt=""
-      />
-      <ul class="list nav__list collapsible__content">
-        <li class="nav__item">
-          <a class="ancla" href="./index.html">Perfil</a>
-        </li>
-        <li class="nav__item">
-          <a class="ancla" href="./index.html">Habilidades</a>
-        </li>
-        <li class="nav__item">
-          <a class="ancla" href="./index.html">Proyectos</a>
-        </li>
-        <li class="nav__item">
-          <a class="ancla" href="./index.html">Contacto</a>
-        </li>
-        <li class="nav__item"><a class="ancla" href="#">Cursos</a></li>
-      </ul>
+      <div class="cart">
+        <a href="./carrito.html" target="_blank"
+          ><img src="./images/shopping.png" alt=""
+        /></a>
+        <div id="sumaIcon" class="cantidadIcono">0</div>
+      </div>
+      <div>
+        <img
+          class="icon--nav nav--toggler"
+          src="./images/menu-svgrepo-com.svg"
+          alt=""
+        />
+        <ul class="list nav__list collapsible__content">
+          <li class="nav__item">
+            <a class="ancla" href="./index.html">Perfil</a>
+          </li>
+          <li class="nav__item">
+            <a class="ancla" href="./index.html">Habilidades</a>
+          </li>
+          <li class="nav__item">
+            <a class="ancla" href="./index.html">Proyectos</a>
+          </li>
+          <li class="nav__item">
+            <a class="ancla" href="./index.html">Contacto</a>
+          </li>
+          <li class="nav__item"><a class="ancla" href="#">Cursos</a></li>
+        </ul>
+      </div>
     </nav>
 
+    <h1 class="title">Programador en 1 Mes !!!</h1>
     <section class="plans--section">
-      <div class="projects--section">
-        <div class="carta grid--1x2 card--container">
-          <img src="./images/html.jpg" alt="" />
-          <div>
-            <p class="header--text-dark header--text-pro">Curso HTML5</p>
-            <p class="card--text">
-              Curso 100% online. 5 horas de videos con los mejores
-              desarrolladores del país, ademas contaras con un seleccionado
-              material complementario para que consolides tus conocimientos
-            </p>
-            <p id="precioIva" class="card--text card--text__precio">
-              Por solo $50
-            </p>
+      <div id="contenedorCursos" class="plans"></div>
 
-            <a href="#"
-              ><svg class="icon icon--primary icon--card">
-                <use xlink:href="./images/sprite-icons.svg#html5"></use>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="carta grid--1x2 card--container">
-          <img src="./images/js.jpg" alt="" />
-          <div>
-            <p class="header--text-dark header--text-pro">Curso JavaScript</p>
-            <p class="card--text">
-              Curso 100% online. 5 horas de videos con los mejores programadores
-              del país, ademas contaras con un seleccionado material
-              complementario para que consolides tus conocimientos
-            </p>
-            <p id="precioIva" class="card--text card--text__precio">
-              Por solo $50
-            </p>
-
-            <a href="#"
-              ><svg class="icon icon--primary icon--card">
-                <use xlink:href="./images/sprite-icons.svg#javascript"></use>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="carta grid--1x2 card--container">
-          <img src="./images/react.jpg" alt="" />
-          <div>
-            <p class="header--text-dark header--text-pro">Curso React</p>
-            <p class="card--text">
-              Curso 100% online. 5 horas de videos con los mejores
-              desarrolladores del país, ademas contaras con un seleccionado
-              material complementario para que consolides tus conocimientos
-            </p>
-            <p id="precioIva" class="card--text card--text__precio">
-              Por solo $50
-            </p>
-
-            <a href="#"
-              ><svg class="icon icon--primary icon--card">
-                <use xlink:href="./images/sprite-react.svg#react"></use>
-              </svg>
-            </a>
-          </div>
-        </div>
+      <div class="card--text card--container carta">
+        <h2>Carrito</h2>
+        <h3>El total de la compra es <span id="total"></span></h3>
+        <button id="verCarrito">Ver Carrito</button>
+        <button id="vaciarCarrito">Vaciar Carrito</button>
       </div>
-      <div id="papa" class="plans"></div>
-    </section>
 
-    <div class="plans">
-      <ul class="list list--plans">
-        <li>
-          Plan A
-          <p class="plans--items">Solo un curso $50</p>
-        </li>
-        <li>
-          Plan B
-          <p class="plans--items">Dos cursos $90</p>
-        </li>
-        <li>
-          Plan C
-          <p class="plans--items">Tres cursos $80</p>
-        </li>
-      </ul>
-    </div>
+      <div class="plans" id="contenedorCarrito"></div>
+    </section>
 
     <footer>
       <div class="footer--padre">
@@ -162,6 +99,6 @@
         </p>
       </div>
     </footer>
+    <script src="./js/courses.js"></script>
   </body>
-  <script src="./js/courses.js"></script>
 </html>

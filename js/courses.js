@@ -1,4 +1,4 @@
-let plan = prompt("Digite la letra de su plan");
+/*let plan = prompt("Digite la letra de su plan");
 let planA = 50;
 let planB = 90;
 let planC = 130;
@@ -55,7 +55,7 @@ break;
 default:
     alert('Escriba un dato valido');
 };
-
+*/
 /*
 let numero = 0;
 while (numero <= 50) {
@@ -65,10 +65,13 @@ while (numero <= 50) {
 */
  
 class Curso {
-    constructor (nombre, precio, duracion){
-    this.nombre = nombre
-    this.precio = precio
-    this.duracion = duracion
+    constructor (id,nombre, precio, duracion, imagen, cantidad){
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = precio;
+    this.duracion = duracion;
+    this.imagen = imagen;
+    this.cantidad = 1;
    }
        
     //metodos
@@ -77,12 +80,17 @@ class Curso {
     }
 }
 
-const html = new Curso ('HTML', 50, '2 meses');
-const javaScript = new Curso ('JavaScript', 50, '3 meses');
-const react = new Curso ('React', 50, '1.5 meses');
+const html = new Curso (1, 'HTML', 50, '2 meses', 'images/html.jpg');
+const javaScript = new Curso (2,'JavaScript', 50, '3 meses', 'images/js.jpg');
+const react = new Curso (3,'React', 50, '1.5 meses', 'images/react.jpg');
 
 arrayCursos = [html, javaScript, react];
 
+let arrayCarrito = [];
+
+if(localStorage.getItem("arrayCarrito")){
+    arrayCarrito = JSON.parse(localStorage.getItem("arrayCarrito"))
+}
 
 arrayCursos.forEach((curso) => {
    console.log(curso);
@@ -90,25 +98,152 @@ arrayCursos.forEach((curso) => {
 
 arrayCursosConIva = arrayCursos.map((curso => {
     return {
+        id: curso.id,
         nombre: curso.nombre,
         precio: (curso.precio * 1.19),
         duracion: curso.duracion,
+        imagen: curso.imagen,
+        cantidad: curso.cantidad,
     }
 }))
 
-console.log(arrayCursosConIva);
+//console.log(arrayCursosConIva);
+
+
+const contenedorCursos = document.getElementById("contenedorCursos");
 
 
 
-const contenedorCursosIva = document.getElementById("papa");
+    arrayCursosConIva.forEach (curso => {
+    const div = document.createElement("div");
+    div.className = "carta grid--1x2 card--container";
+    div.innerHTML = ` <div>
+                         <img src="${curso.imagen}" alt="">
+                      </div>                      
+    <p class="header--text-dark header--text-pro">Curso ${curso.nombre}</p> <p class="card--text">Curso 100% online. 5 horas de videos con los mejores
+    desarrolladores del país, ademas contaras con un seleccionado
+    material complementario para que consolides tus conocimientos</p><p class="card--text card--text__precio">Precio con IVA = $ ${curso.precio}</p>
+    <button id ="btnCarrito${curso.id}">Agregar al carrito</button>`
+    contenedorCursos.appendChild(div);
 
-arrayCursosConIva.forEach (curso => {
-    let div = document.createElement("div");
-    div.innerHTML = ` <p>${curso.nombre}</p> <p>Precio con IVA = $ ${curso.precio}</p>
-    <button>Agregar al carrito</button>`
-    contenedorCursosIva.appendChild(div);
+    
+const btnCarrito = document.getElementById(`btnCarrito${curso.id}`);
+btnCarrito.addEventListener("click", () => {agregarAlCarrito(curso.id)});
+    })
+
+    
+        
+
+// Funcion agregar al carrito
+
+const agregarAlCarrito = (id) => {
+    const productoEnCarrito = arrayCarrito.find(curso => curso.id === id);
+    if(productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+        sumarEnIcon();
+    } else {
+        const curso = arrayCursosConIva.find(curso => curso.id === id);
+        arrayCarrito.push(curso);
+        sumarEnIcon();
+        localStorage.setItem("arrayCarrito", JSON.stringify(arrayCarrito));
+    }
+    
+       
+}
+
+// mostrar el carrito
+
+const contenedorCarrito = document.getElementById("contenedorCarrito");
+const verCarrito = document.getElementById("verCarrito");
+
+verCarrito.addEventListener("click", () => {
+    mostrarCarrito();
 })
 
+//función para mostrar el carrito
+
+const mostrarCarrito = () => {
+    contenedorCarrito.innerHTML = "";
+    arrayCarrito.forEach(curso => {
+        const divCarrito = document.createElement("div");
+        divCarrito.className = "carta grid--1x2 card--container";
+        divCarrito.innerHTML = `<div>
+                             <img src="${curso.imagen}" alt="">
+                          </div>                      
+                          <p class="header--text-dark header--text-pro">Curso ${curso.nombre}</p>
+                          <p class="card--text">Curso 100% online</p>
+                          <p class="card--text card--text__precio">Precio con IVA = $ ${curso.precio}</p>
+                          <p class="card--text card--text__precio">Cantidad = ${curso.cantidad}</p>
+                          <div class="sumaResta card--text__precio" >
+                            <i   class="bi bi-dash-lg"></i>
+                            <div  class="quantity">0</div>
+                            <i  class="bi bi-plus-lg"></i>
+                          </div> 
+                          <button id ="eliminar${curso.id}">Eliminar</button>`
+        contenedorCarrito.appendChild(divCarrito);
+        
+        const boton = document.getElementById(`eliminar${curso.id}`);
+        boton.addEventListener("click", () => {
+            eliminarDelCarrito(curso.id);
+        })
+
+    })
+    calcularTotal();
+}
 
 
 
+
+
+const eliminarDelCarrito = (id) => {
+    const curso = arrayCarrito.find (curso => curso.id === id);
+    const indice = arrayCarrito.indexOf(curso);
+    arrayCarrito.splice(indice,1);
+
+    mostrarCarrito();
+    RestarEnIcon();
+
+    localStorage.setItem("arrayCarrito", JSON.stringify(arrayCarrito));
+}
+
+const vaciarCarrito = document.getElementById("vaciarCarrito");
+
+vaciarCarrito.addEventListener("click", () => {
+    eliminarTodoElCarrito();
+})
+
+const eliminarTodoElCarrito = () => {
+    arrayCarrito = [];
+    mostrarCarrito();
+    localStorage.clear();
+}
+
+
+// Mostrar total
+const total = document.getElementById("total");
+
+const calcularTotal = () => {
+    let totalCompra = 0;
+    arrayCarrito.forEach(curso => {
+        totalCompra += curso.precio * curso.cantidad; 
+    })
+    total.innerHTML = `Total $${totalCompra}`
+}
+
+const sumaIcon = document.getElementById("sumaIcon");
+const restaIcon = document.getElementById("sumaIcon");
+
+const sumarEnIcon = () => {
+    let totalSuma = 0;
+    arrayCarrito.forEach(curso => {
+        totalSuma += curso.cantidad;
+    })
+    sumaIcon.innerHTML = `${totalSuma}`
+}
+const RestarEnIcon = () => {
+    let totalSuma = 0;
+    arrayCarrito.forEach(curso => {
+        totalSuma -= curso.cantidad;
+    })
+    sumaIcon.innerHTML = `${totalSuma}`
+}
