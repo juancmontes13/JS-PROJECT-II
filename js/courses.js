@@ -202,8 +202,7 @@ const eliminarDelCarrito = (id) => {
 
     mostrarCarrito();
     RestarEnIcon();
-
-    localStorage.setItem("arrayCarrito", JSON.stringify(arrayCarrito));
+        localStorage.setItem("arrayCarrito", JSON.stringify(arrayCarrito));
 }
 
 const vaciarCarrito = document.getElementById("vaciarCarrito");
@@ -241,9 +240,11 @@ const sumarEnIcon = () => {
     sumaIcon.innerHTML = `${totalSuma}`
 }
 const RestarEnIcon = () => {
-    let totalSuma = 0;
+    let totalResta = 0;
     arrayCarrito.forEach(curso => {
-        totalSuma -= curso.cantidad;
+        totalResta -= curso.cantidad;
     })
-    sumaIcon.innerHTML = `${totalSuma}`
+    sumaIcon.innerHTML = `${totalResta}`
 }
+
+
