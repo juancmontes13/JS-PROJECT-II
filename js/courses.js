@@ -91,6 +91,7 @@ let arrayCarrito = [];
 if(localStorage.getItem("arrayCarrito")){
     arrayCarrito = JSON.parse(localStorage.getItem("arrayCarrito"))
 }
+if(localStorage.getItem(""))
 
 arrayCursos.forEach((curso) => {
    console.log(curso);
@@ -174,11 +175,7 @@ const mostrarCarrito = () => {
                           <p class="card--text">Curso 100% online</p>
                           <p class="card--text card--text__precio">Precio con IVA = $ ${curso.precio}</p>
                           <p class="card--text card--text__precio">Cantidad = ${curso.cantidad}</p>
-                          <div class="sumaResta card--text__precio" >
-                            <i   class="bi bi-dash-lg"></i>
-                            <div  class="quantity">0</div>
-                            <i  class="bi bi-plus-lg"></i>
-                          </div> 
+                          
                           <button id ="eliminar${curso.id}">Eliminar</button>`
         contenedorCarrito.appendChild(divCarrito);
         
@@ -209,6 +206,10 @@ const vaciarCarrito = document.getElementById("vaciarCarrito");
 
 vaciarCarrito.addEventListener("click", () => {
     eliminarTodoElCarrito();
+    Swal.fire({
+        title: "Ups Vaciaste el carrito",
+        icon: "warning"   
+    });
 })
 
 const eliminarTodoElCarrito = () => {
@@ -226,11 +227,11 @@ const calcularTotal = () => {
     arrayCarrito.forEach(curso => {
         totalCompra += curso.precio * curso.cantidad; 
     })
-    total.innerHTML = `Total $${totalCompra}`
+    total.innerHTML = `$${totalCompra}`
 }
 
 const sumaIcon = document.getElementById("sumaIcon");
-const restaIcon = document.getElementById("sumaIcon");
+const restaIcon = document.getElementById("restaIcon");
 
 const sumarEnIcon = () => {
     let totalSuma = 0;
@@ -248,3 +249,61 @@ const RestarEnIcon = () => {
 }
 
 
+
+
+
+// ---- CONVERTIDOR DE MONEDAS ---- //
+
+const select = document.querySelectorAll(".currency");
+const btn = document.getElementById("btn");
+const input = document.getElementById("input");
+const result = document.getElementById("result");
+
+fetch("https://api.frankfurter.app/currencies")
+.then((data) => data.json())
+.then((data) => {
+    display(data);
+});
+
+function display(data) {
+    const entries = Object.entries(data);
+    for(let i = 0; i < entries.length; i++){
+        select[0].innerHTML += `<option value="${entries[i][0]}">${entries[i][0]}</option>`;
+        select[1].innerHTML += `<option value="${entries[i][0]}">${entries[i][0]}</option>`;    
+    
+    }
+}
+
+btn.addEventListener("click", () => {
+    let currency1 = select[0].value;
+    let currency2 = select[1].value;
+    let value = input.value;
+
+    if(currency1 != currency2) {
+        convert(currency1, currency2, value);
+    }else{
+        Swal.fire({
+            title: "Selecionaste la Misma Moneda",
+            text: "Selecciona una diferente para continuar",
+            icon: "error",
+        });
+    }
+
+} );
+
+function convert(currency1, currency2, value){
+    const host = "api.frankfurter.app";
+    /*fetch{
+        `https://${host}/latest?amount=${value}&from=${currency1}&to=${currency2}`
+    }*/
+
+    fetch(        `https://${host}/latest?amount=${value}&from=${currency1}&to=${currency2}`
+    )
+    
+
+    .then((val) => val.json())
+    .then((val) =>{
+        console.log(Object.values(val.rates)[0]);
+        result.value = Object.values(val.rates)[0];
+    })
+}

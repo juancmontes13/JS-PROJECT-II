@@ -62,18 +62,61 @@
       </div>
     </nav>
 
-    <h1 class="title">Programador en 1 Mes !!!</h1>
+    <div class="clearfix"></div>
+
     <section class="plans--section">
+      <h1 class="title">Programador en 1 Mes !!!</h1>
       <div id="contenedorCursos" class="plans"></div>
 
-      <div class="card--text card--container carta">
-        <h2>Carrito</h2>
-        <h3>El total de la compra es <span id="total"></span></h3>
-        <button id="verCarrito">Ver Carrito</button>
-        <button id="vaciarCarrito">Vaciar Carrito</button>
+      <div>
+        <aside class="aside">
+          <div class="card--text card--container carta">
+            <p class="carritoText">Carrito</p>
+            <p class="totalCompraText">
+              El total de la compra es <span id="total"></span>
+            </p>
+            <button class="boton--secondary" id="verCarrito">
+              Ver Carrito
+            </button>
+            <button class="boton--secondary" id="vaciarCarrito">
+              Vaciar Carrito
+            </button>
+          </div>
+        </aside>
+
+        <div class="plans" id="contenedorCarrito"></div>
+      </div>
+    </section>
+
+    <div class="clearfix"></div>
+
+    <section class="container-section">
+      <div>
+        <p class="textoConvertidor">
+          Recuerda que nuestros precios están en USD, si necesitas hacer el
+          cambio a tu moneda utiliza el CONVERTIDOR
+        </p>
       </div>
 
-      <div class="plans" id="contenedorCarrito"></div>
+      <div class="container">
+        <h2 class="converterText">CONVERTIDOR DE DIVISAS</h2>
+        <div class="boxContainer">
+          <div class="box">
+            <div class="left-box">
+              <select name="currency" class="currency"></select>
+              <input type="number" name="" id="input" />
+            </div>
+          </div>
+          <div class="box">
+            <div class="right-box">
+              <select name="currency" class="currency"></select>
+              <input type="number" name="" id="result" disabled />
+            </div>
+          </div>
+        </div>
+
+        <button class="btn" id="btn">CONVERTIR</button>
+      </div>
     </section>
 
     <footer>
@@ -99,6 +142,8 @@
         </p>
       </div>
     </footer>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/courses.js"></script>
   </body>
 </html>

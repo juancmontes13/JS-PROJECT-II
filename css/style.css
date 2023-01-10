@@ -11,7 +11,10 @@
 
 *, *::after, *::before {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
 html{
     font-size: 62.5%;
 
@@ -85,25 +88,26 @@ p{
     margin-top: 8rem;
 }
 .header--t{
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     color: var(--color-headings);
     font-weight: 600;
 }
 .header--text-dark{
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--color-body-darker);
     font-weight: 600;
 }
 .header--text-pro {
     text-align: left;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 @media screen and (min-width: 760px){
     .header--t{
-        font-size: 3rem;
+        font-size: 2rem;
     }
     .header--text-dark{
-        font-size: 3rem;
+        font-size: 2rem;
+        margin-left: 1rem;
     }
 }
 
@@ -205,7 +209,7 @@ a {
     border-radius: 40px;
     border: 0;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
     margin: 1rem 0 3rem 0;
     padding: 1.5rem 2rem;
@@ -236,7 +240,9 @@ a {
 }
 .boton--secondary{
     background: var(--color-secondary);
-    color: #fff;
+    color: #000;
+    font-size: 1.5rem;
+    width: 150px;
 }
 .boton--secondary:hover{
     background: #00c8eb;
@@ -690,7 +696,7 @@ transition: 1s;
     color: #000;
 }
 .fig-text{
-    font-size: 2rem;
+    font-size: 1rem;
 }
 .fig-text--contenedor{
     padding: 4rem 0;
@@ -718,6 +724,7 @@ color: var(--color-primary);
 font-weight: 600;
 }
 .plans--section{
+ 
     margin-top: 10rem;
 }
 .card--text__precio{
@@ -732,8 +739,7 @@ font-weight: 600;
     justify-content: space-evenly;
     align-items: center;
     font-size: 2.5rem;
-    margin: 2.5rem 2.5rem 10rem 2.5rem;
-    padding: 2rem;
+   
     text-align: center;
     
     
@@ -757,3 +763,100 @@ font-weight: 600;
 }
 
 #planes {display: none}
+
+.aside {
+    float: left;
+    width: 20%;
+    margin-left: 5rem;
+}
+.clearfix{
+    clear: both;
+}
+
+/* convertidor de divisas */ 
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ccc;
+    padding: 1rem 2.4rem;
+    border-radius: 2rem;
+    width: 500px;
+}
+.container-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 8rem 0;
+}
+.textoConvertidor{
+    margin-bottom: 8rem;
+    font-size: 2rem;
+}
+.converterText{
+    text-align: center;
+    color: var(--color-headings);
+}
+
+
+
+.box div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boxContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+select{
+    width: 95%;
+    height: 4rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background: #00c8eb;
+    outline: none;
+    color: #000;
+    margin: 0.2rem 0;
+    padding: 0 0.1rem;
+    border-radius: 1rem;
+    border: none;
+
+}
+
+input{
+    width: 95%;
+    height: 4rem;
+    font-size: 1rem;
+    margin: 0.2rem 0;
+    border-radius: 1rem;
+    border: none;
+    background: whitesmoke;
+    outline: none;
+    padding: 0 1rem;
+}
+
+.btn{
+    width: 58%;
+    height: 4rem;
+    background: var(--color-secondary);
+    color: #000;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+.carritoText{
+    font-size: 2.5rem;
+    padding: 0.5rem;
+}
+.totalCompraText{
+    font-size: 2rem;
+    padding: 0.5rem;
+}
